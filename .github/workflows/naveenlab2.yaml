@@ -1,0 +1,23 @@
+name: Github Actions Lab
+
+on: push
+
+jobs:
+  job-on-ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - run: date
+      - run: pwd
+  
+  job-on-windows:
+      name: Job runs in windows
+      runs-on: windows-latest
+      steps:
+        - name: First step in windows
+          run: date
+        - run: ls
+  dependent-job:
+    needs: [job-on-ubuntu, job-on-windows]
+    runs-on: macos-latest
+    steps:
+      - run: pwd
